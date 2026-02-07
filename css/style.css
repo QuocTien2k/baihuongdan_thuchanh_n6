@@ -98,6 +98,17 @@ hr {
   max-width: 900px;
 }
 
+.thanks {
+  text-align: center;
+  background: linear-gradient(135deg, #f8fbff, #eef4ff);
+}
+
+.thanks img {
+  max-width: 350px;
+  margin-top: 15px;
+}
+
+
 /* FOOTER */
 .footer {
   background: #0b1c2d;
