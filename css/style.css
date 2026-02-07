@@ -30,6 +30,18 @@ body {
   opacity: 0.9;
 }
 
+/* Cho phép copy riêng CMD */
+.cmd {
+  user-select: text !important;
+  cursor: text;
+}
+
+/* Toàn trang vẫn không cho copy */
+body {
+  user-select: none;
+}
+
+
 /* BOX */
 .box {
   max-width: 1000px;

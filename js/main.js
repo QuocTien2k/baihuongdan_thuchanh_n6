@@ -33,6 +33,9 @@ document.querySelectorAll("img").forEach((img) => {
 
 // Chặn select toàn trang
 document.addEventListener("selectstart", function (e) {
+  if (e.target.closest(".cmd")) {
+    return; // cho phép chọn text trong CMD
+  }
   e.preventDefault();
 });
 
