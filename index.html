@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bài hướng dẫn thực hành – Nhóm 6</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <header class="header">
+      <h1>BÀI HƯỚNG DẪN THỰC HÀNH</h1>
+      <p>Quản trị hệ thống mạng – Nhóm 6 – Đề tài số 3</p>
+    </header>
+
+    <!-- NOTE -->
+    <section class="box note">
+      <h2>⚠️ Lưu ý trước khi thực hành</h2>
+      <ul>
+        <li>
+          01 máy <strong>Windows Server</strong> đã nâng cấp
+          <strong>Domain Controller</strong>.
+        </li>
+        <li>01 máy <strong>Client</strong> đã tham gia Domain.</li>
+        <li>Server và Client phải thông mạng.</li>
+      </ul>
+
+      <p>
+        <strong>Tắt / kiểm tra Firewall (CMD – Run as Administrator):</strong>
+      </p>
+      <pre>
+netsh advfirewall set allprofiles state off
+netsh advfirewall show allprofiles
+    </pre
+      >
+
+      <p><strong>Kiểm tra kết nối mạng:</strong></p>
+      <pre>
+ping &lt;IP_Server&gt;
+ping &lt;IP_Client&gt;
+    </pre
+      >
+
+      <p class="warning">
+        Nếu ping không thông → kiểm tra Firewall, IP, DNS và trạng thái Domain.
+      </p>
+    </section>
+
+    <!-- INTRO -->
+    <section class="box">
+      <h2>Mục tiêu bài lab</h2>
+      <p>
+        Tạo <strong>Mirrored Volume (RAID-1 phần mềm)</strong> giữa Disk 0 và
+        Disk 1 (~10GB) bằng <strong>Disk Management</strong>. Volume sau khi tạo
+        có ký tự <strong>E:</strong>, định dạng <strong>NTFS</strong>, trạng
+        thái <strong>Healthy (Mirrored)</strong>.
+      </p>
+    </section>
+
+    <!-- REQUIRE -->
+    <section class="box">
+      <h2>Yêu cầu trước khi bắt đầu</h2>
+      <p>Thêm 2 ổ cứng ảo (10GB) trong VMware Workstation:</p>
+      <img src="img/01.png" />
+      <img src="img/02.png" />
+      <img src="img/03.png" />
+    </section>
+
+    <section class="box">
+      <p>Đăng nhập Administrator → Mở <strong>Disk Management</strong></p>
+      <img src="img/04.png" />
+    </section>
+
+    <!-- STEP -->
+    <section class="box step">
+      <h2>Bước 1: Kiểm tra trạng thái ổ đĩa</h2>
+      <p>
+        Disk 0 & Disk 1: Unallocated (~9.98GB) <br />
+        Disk 2: Có sẵn C:, EFI, Recovery
+      </p>
+      <img src="img/05.png" />
+    </section>
+
+    <section class="box step">
+      <h2>Bước 2: Convert Basic → Dynamic</h2>
+      <p>Chuột phải Disk 0 → Convert to Dynamic Disk → chọn Disk 0 & Disk 1</p>
+      <img src="img/06.png" />
+    </section>
+
+    <section class="box step">
+      <h2>Bước 3: Tạo New Mirrored Volume</h2>
+      <img src="img/07.jpg" />
+    </section>
+
+    <section class="box step">
+      <h2>Bước 4: Chọn đĩa & dung lượng</h2>
+      <img src="img/08.jpg" />
+    </section>
+
+    <section class="box step">
+      <h2>Bước 5: Gán ký tự ổ đĩa</h2>
+      <img src="img/09.jpg" />
+    </section>
+
+    <section class="box step">
+      <h2>Bước 6: Format NTFS</h2>
+      <img src="img/10.jpg" />
+    </section>
+
+    <section class="box step">
+      <h2>Bước 7: Hoàn tất & kiểm tra</h2>
+      <img src="img/11.jpg" />
+    </section>
+
+    <hr />
+
+    <!-- SHARE -->
+    <section class="box">
+      <h2>Thiết lập chia sẻ & Quota</h2>
+      <img src="img/12.png" />
+    </section>
+
+    <section class="box step">
+      <h2>Chia sẻ thư mục</h2>
+      <img src="img/13.png" />
+      <img src="img/14.png" />
+      <img src="img/15.png" />
+    </section>
+
+    <section class="box step">
+      <h2>Phân quyền Security</h2>
+      <img src="img/16.png" />
+      <img src="img/17.png" />
+    </section>
+
+    <section class="box step">
+      <h2>Tạo thư mục user</h2>
+      <img src="img/18.png" />
+      <img src="img/19.png" />
+    </section>
+
+    <section class="box step">
+      <h2>Thiết lập Quota</h2>
+      <img src="img/20.png" />
+    </section>
+
+    <section class="box step">
+      <h2>Kiểm tra hoạt động của Quota trên Client</h2>
+      <p>
+        Sau khi hoàn tất cấu hình <strong>Quota</strong>, đăng nhập vào
+        <strong>máy Client</strong> và thử
+        <strong>sao chép một file có dung lượng lớn</strong>
+        (vượt quá mức dung lượng đã giới hạn) vào thư mục được chia sẻ.
+      </p>
+      <p>
+        Khi vượt quá quota, <strong>Windows sẽ hiển thị thông báo lỗi</strong>.
+        Bạn hãy <strong>chụp lại màn hình thông báo này</strong> và gửi về email
+        của nhóm để hoàn tất bài lab.
+      </p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <p><strong>Nhóm 6 – Đề tài số 3</strong></p>
+      <span class="copy-email" data-email="leanhkhoa29072005@gmail.com">
+        leanhkhoa29072005@gmail.com
+      </span>
+    </footer>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>
