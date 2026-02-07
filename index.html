@@ -24,13 +24,35 @@
     <!-- NOTE -->
     <section class="box note">
       <h2>⚠️ Lưu ý trước khi thực hành</h2>
-      <ul>
+      <div class="teacher-warning">
+        🚨 <strong>BẮT BUỘC – LÀM THEO THỨ TỰ:</strong><br />
+        Sinh viên <u>PHẢI hoàn thành bài tổng hợp do thầy giao</u> trước,
+        <br />
+        👉 <strong>SAU ĐÓ</strong> mới có đủ điều kiện để thực hiện
+        <strong>bài thực hành của nhóm</strong>.
+        <br />
+        ❌ Không làm bài của thầy → <strong>KHÔNG THỂ làm bài nhóm</strong>.
+      </div>
+
+      <ul class="lab-requirement">
         <li>
           01 máy <strong>Windows Server</strong> đã nâng cấp
           <strong>Domain Controller</strong>.
         </li>
-        <li>01 máy <strong>Client</strong> đã tham gia Domain.</li>
-        <li>Server và Client phải thông mạng.</li>
+        <li>Tối thiểu <strong>01 máy Client</strong> đã tham gia Domain.</li>
+        <li>
+          Các máy <strong>Server & Client phải thông mạng</strong> (ping qua lại
+          được).
+        </li>
+        <li>
+          Bài làm phải <strong>chia nhóm người dùng</strong> theo phòng ban
+          (<span class="highlight-group">Kế Toán</span>,
+          <span class="highlight-group">Kỹ Thuật</span>)
+          <br />
+          <em style="color: #dc3545; font-weight: 600">
+            (Chỉ thực hiện sau khi đã hoàn thành bài tổng hợp của thầy)
+          </em>
+        </li>
       </ul>
 
       <p>
@@ -86,6 +108,9 @@ ping &lt;IP_Client&gt;
         Disk 0 & Disk 1: Unallocated (~9.98GB) <br />
         Disk 2: Có sẵn C:, EFI, Recovery
       </p>
+      <p>Disk 0 & Disk 1: ở trạng thái Online (~9.98GB) <br /></p>
+      <p>Chuột phải vào tên Disk > Initialize Disk > Chọn chuẩn GPT > OK.</p>
+
       <img src="img/05.png" />
     </section>
 
@@ -130,13 +155,28 @@ ping &lt;IP_Client&gt;
 
     <section class="box step">
       <h2>Chia sẻ thư mục</h2>
+      <p>
+        o Click chuột phải vào ổ đĩa đã tạo mới o Click vào tab Share → Advanced
+        Sharing → tick vào ô Share this folder → Đặt tên “LuuTru” ở dưới dòng
+        chữ Share name:
+      </p>
       <img src="img/13.png" />
       <img src="img/14.png" />
+      <p>
+        o Phân quyền cho user: Permissions → tick ô Full control → Ok cho tới
+        khi ra tới cửa sổ Properties
+      </p>
       <img src="img/15.png" />
     </section>
 
     <section class="box step">
       <h2>Phân quyền Security</h2>
+      <p>
+        o Chọn tab Security → Edit → remove hết các user dư thừa, chỉ chừa lại
+        CREATOR OWNER, Administrators → Add → gõ tên
+        <span>nhóm user đã tạo trước đó</span> → Check Names, có gạch dưới là
+        đúng → Ok → tick vào ô List folder contents → Ok → Ok
+      </p>
       <img src="img/16.png" />
       <img src="img/17.png" />
     </section>
@@ -144,11 +184,25 @@ ping &lt;IP_Client&gt;
     <section class="box step">
       <h2>Tạo thư mục user</h2>
       <img src="img/18.png" />
+      <p>
+        o Chuột phải Designer 1 → chọn tab Security → Edit → Add → gõ tên user
+        ứng với folder đã tạo → Check Names, có gạch dưới là đúng → Ok → tick
+        vào ô Modify → Ok → Ok
+      </p>
       <img src="img/19.png" />
     </section>
 
     <section class="box step">
       <h2>Thiết lập Quota</h2>
+      <p>
+        o Quay lại cửa sổ This PC → tab Quota → tick vào ô “Enable quota
+        management” → tick vào ô “Deny disk space to users exceeding quota
+        limit” để kích hoạt Hard Quota → tick vào ô “Limit disk space to” → gõ
+        dung lượng giới hạn và tùy chọn đơn vị (150 MB dung như hình dùng để thử
+        nghiệm) o Để chuyển thành Soft Quota ta bỏ tick ở ô “Deny disk space to
+        users exceeding quota limit” o Ok → hoàn thành giới hạn dung lượng cho
+        user
+      </p>
       <img src="img/20.png" />
     </section>
 
@@ -166,6 +220,7 @@ ping &lt;IP_Client&gt;
         của nhóm để hoàn tất bài lab.
       </p>
     </section>
+
     <section class="box thanks">
       <h2>🎉 Hoàn thành bài thực hành</h2>
       <p>
